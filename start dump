@@ -1,0 +1,24 @@
+import uiautomator2 as u2
+import codecs
+import xml.etree.ElementTree as ET
+import time
+
+def dump_hierarchy(device, dump_filename):
+    dump_content = device.dump_hierarchy()
+    with codecs.open(dump_filename, 'w', encoding='utf-8') as f:
+        f.write(dump_content)
+
+def main():
+    device = u2.connect()
+
+    # Defina o nome do arquivo para o dump
+    dump_filename = 'universal_dump.xml'
+
+    # Execute o dump da hierarquia
+    dump_hierarchy(device, dump_filename)
+
+    # Aguarde um curto período de tempo para garantir que o dump seja concluído
+    time.sleep(2)
+
+if __name__ == "__main__":
+    main()
